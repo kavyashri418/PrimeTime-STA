@@ -208,7 +208,32 @@ report_annotated_parasitics -list_not_annotated
 <img width="646" height="330" alt="Screenshot 2026-01-27 172004" src="https://github.com/user-attachments/assets/d57783d6-d55c-4919-9600-e093672b7aa0" />
 
 ## Source Constraints and Check for Correctness
+- Source Constraints
+```
+- SDC (.sdc) file
+read_sdc -echo $constraint_file
+
+- Tcl Constraints (Not an .sdc file)
+source -echo $constraint_file
+```
+
+- Check for Constraint completeness and corectness
+```
+- Are Constraints complete?
+check_timing -verbose
+
+- Examine Clock and Port Constraint
+report_clock -skew -attribute
+report_port -verbose
+
+- Examine Design Constraints and Exceptions
+report_design
+report_exceptions -ignored
+report_case_analysis
+```
+
 ## Confirming Constraint Completeness
+<img width="798" height="408" alt="Screenshot 2026-01-28 155300" src="https://github.com/user-attachments/assets/8f43acd5-052f-444a-b688-7e7abb8d7a8a" />
 
 ## Checking for Ignored Timing Exceptions
 - User-specified exceptions to PrimeTime single-cycle synchronous STA are
@@ -216,6 +241,17 @@ report_annotated_parasitics -list_not_annotated
   - Multi-cycle paths
   - set_max_delay and set_min_delay
 - Incorrectly-specified exceptions are ignored
+```
+pt_shell> report_exceptions -ignored
+Reasons: f invalid start points
+         i invalid end points
+         p non-existent paths
+         o overridden paths
+From   Through    To   Setup   Hold    Ignored
+1 ORCA TOF/1 SDRAM IF/DQ out o reg[0]/Q
+                             I_ORCA_TOP/I_SDRAM_IF/sd_mux_dq_out_0/IO
+                                              FALSE         FALSE   f
+```
 
 ## Coverage Analysis
 ```
@@ -226,6 +262,15 @@ pt_shell> report_analysis_coverage
 
 ## Generate Detailed Reports
 - Generate detailed reports
+```
+Generate Timing Reports with applicable options:
+
+report_timing \
+       - input_pins -nets -capacitance -transition \
+       - delay min_max -group CLK -max_paths 10 \
+       - slack_less infinity <other options>
+```
+
 - Examine generated reports for:
  - Timing Violations, Constraints and Exceptions applied
 
