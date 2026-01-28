@@ -41,3 +41,12 @@ pt_shell> set_output_delay -min 1.0 -clock PCI_CLK pad[0]
 ```
 
 - Quit PrimeTime.
+
+## Summary
+- List the steps of Timing Analysis flow in PrimeTime
+- Generate summary reports using
+  - Report_analysis_coverage
+  - Report_global_timing
+  - Report_timing
+- State the purposes of setup files and run a script
+- Enable monitoring runtime and memory used
