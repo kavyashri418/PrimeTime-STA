@@ -125,7 +125,60 @@ report_timing delay_min
 <img width="612" height="221" alt="Screenshot 2026-01-27 171936" src="https://github.com/user-attachments/assets/21181409-5924-44ed-b5d9-9dd0691111d1" />
 
 ## Load Design and Check
+- Read gate level netlist; See also help read*
+```
+read_verilog orca_routed.v.gz
+```
+
+- Set the current design to be Top level design
+```
+current_design ORCA
+```
+
+- Check what is current design
+```
+pt_shell> current_design
+{"ORCA"}
+```
+
+- What Designs are loaded in memory?
+```
+pt_shell> get_design *
+{"ORCA"}
+```
+
+- Source file name of current_design
+```
+pt_shell> list_designs
+Design Registry:
+*L ORCA    /<path to>/orca_routed.v.gz:ORCA
+```
+
 ## Load Libraries and Check
+- set search_path "..../ref/libs ../ref/design"
+- set link_path "* sc_max.cb io_max.db"
+- link_design ; Load Libraries and Resolve References
+
+- Are the Libraries loaded?
+```
+list_libs (or) list_libraries (or) get_libs
+Library Registry:
+* cb13fs12C_tsmc_max    ../ref/libs/sc_max.db:cd13fs120_tsmc_max
+  cb13ic32c_tsmc_max    ../ref/libs/io_max.db:cb13io320_tsmc_max
+```
+
+- Are Link Library DB Files followed by a "*"
+```
+pt_shell> printvar link_path
+link_path = "*sc_max.db io_max.db"
+```
+
+- Does search_path list start with a "."?
+```
+Pt_shell> printvar search_path
+search_path - ". ../ref/libs ../ref/design"
+```
+
 ## Parasitic Annotation for Delay Calculation
 ```
 read_parasitics my_chip.spef
@@ -136,6 +189,17 @@ read_parasitics my_chip.spef
 - It's recommended that parasitics are read in using one of the two formats:
   - Galaxy Parasitic Database (GPD)
   - Standard Parasitic Exchange Format (SPEF)
+
+- SPEF file
+```
+read_parasitics -format SPEF flat.spef
+```
+
+- GPD directory
+```
+read_parasitics -format GPD GPD_dir
+```
+
 ## Check Parasitic Annotation
 ```
 report_annotated_parasitics
