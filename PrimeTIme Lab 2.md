@@ -101,6 +101,7 @@ Clock Network Delay (seen in a default timing report)
 ```
 create_clock period 4 [get_ports Clk]
 set_clock_latency -source 2 [get_clocks CLK]
+```
 
 ## Pre Versus Post CTS
 Ideal Clocks Pre CTS, user specifies clock network latency
