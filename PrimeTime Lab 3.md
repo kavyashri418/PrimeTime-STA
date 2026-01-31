@@ -43,6 +43,7 @@ Some benefits of organizing violations by clock domain:
 - Some clocks may be more critical than others
 - Clock skew or a "known" issue with a particular clock may be causing multiple violations
 <img width="497" height="226" alt="Screenshot 2026-01-31 023357" src="https://github.com/user-attachments/assets/74089b05-4b35-4972-b853-79bcbec18ec6" />
+
 Lists all violating endpoints sorted by slack within each path group. Path groups are displayed in alphabetical order
 
 ## checks Exercised: report_analysis_coverage
@@ -145,6 +146,7 @@ report_timing -to FF4/D -nworst 3 ----> 3 paths are reported
 ## Cover Design Reporting (report_timing -cover_design)
 Need: To report the worst case path through every violating pin in the design
 Eliminates the need for guessing the correct max_paths/nworst settings!
+
 <img width="592" height="215" alt="Screenshot 2026-01-31 023654" src="https://github.com/user-attachments/assets/efd651a6-e26a-4765-aacc-29fc3742bb4d" />
 
 ## Reporting Violating Paths Through Pin Sets
@@ -205,14 +207,13 @@ Can also use te following "shortcuts" for -to and -from:
 <img width="373" height="220" alt="Screenshot 2026-01-31 023832" src="https://github.com/user-attachments/assets/e2c52d5a-678f-46d0-ab3a-f9a2c5c27f90" />
 
 ## Clock ports vs Clock Objects
-```
 report_timing -from [get_ports clk] will return: (not a valid start point(port with a clock definition))
 - Nothing-this is not a timing path
 - A single timing path from the clk port
 report_timing -from [get_clocks clk] will return:
 - Nothing-this is not a timing path
 - A single, worst timing path for setup launched by the clock clk
-```
+
 <img width="599" height="205" alt="Screenshot 2026-01-31 023843" src="https://github.com/user-attachments/assets/8afb999d-e2c6-4e70-af3b-3e77bc481294" />
 
 ## Recommendations - Being Specific
@@ -231,12 +232,24 @@ report_timing fall_from [get_clocks clk] rise_to [get_clocks clk]
 <img width="644" height="330" alt="Screenshot 2026-01-31 023922" src="https://github.com/user-attachments/assets/be908e42-6525-4a35-9406-ece930da470e" />
 
 ## Generating Reports Methodology: Delay Calculation
+<img width="612" height="366" alt="Screenshot 2026-01-31 023929" src="https://github.com/user-attachments/assets/52ad349c-de61-4d09-871f-228f99d739e9" />
 
 ## Including Input Pins in a Timing Report
+```
+pt_shell> report_timing
+```
+<img width="378" height="124" alt="Screenshot 2026-01-31 023939" src="https://github.com/user-attachments/assets/9c281245-2bd5-406f-8a7e-2c979efcaafc" />
+
+```
+pt_shell> report_timing -input_pins
+```
+<img width="648" height="147" alt="Screenshot 2026-01-31 023948" src="https://github.com/user-attachments/assets/2aad5e03-6eec-4bd5-8dfe-90c6597bea51" />
 
 ## Cell Delay Calculation Report
+<img width="660" height="320" alt="Screenshot 2026-01-31 024000" src="https://github.com/user-attachments/assets/dd94da0f-bac1-44a0-be4c-5e58955815cc" />
 
 ## Net Delay Calculation Report
+<img width="658" height="300" alt="Screenshot 2026-01-31 024010" src="https://github.com/user-attachments/assets/382648f0-f7a2-4dd0-8014-fbffcf14e96b" />
 
 Objective - To understand how to generate timing reports and understand how to analyze them.
 
