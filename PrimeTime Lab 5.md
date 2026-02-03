@@ -166,3 +166,8 @@ propagate the inverting (pin B) path
  - Multicycle paths
  - Combinational feedback loops
  - Non-unate cells along clock paths
+
+
+```
+pt_shell> quit
+```
