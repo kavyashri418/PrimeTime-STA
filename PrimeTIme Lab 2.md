@@ -276,6 +276,6 @@ pt_shell> set_output_delay -min 1.0 -clock PCI_CLK pad[0]
 - Verify that the design is completely constrained using ``` check_timing ```
 - Find number of timing checks in the design and how many are excercised/not excercised using ``` report_analysis_coverage ```
 - Using a job Aid of 9 commands, debug the issues found above
-- Identify the clock and interface constraints out of timing reports
+- Identify the clock and interface constraints out of timing reports.
 
 
