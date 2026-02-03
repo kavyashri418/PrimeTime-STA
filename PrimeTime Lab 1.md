@@ -176,7 +176,7 @@ pt_shell> !rep -delay min
 
 - Quit PrimeTime.
 ```
-pt_shell> quit
+pt_shell> quit.
 ```
 
 
