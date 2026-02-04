@@ -1,4 +1,4 @@
-9## Generate Timing Reports and Analysing them
+## Generate Timing Reports and Analysing them
 
 ## Timing Analysis Flow in PrimeTime Generating Reports
 - STA flow is divided into several steps as seen below
