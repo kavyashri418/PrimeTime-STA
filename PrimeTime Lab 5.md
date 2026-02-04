@@ -167,7 +167,35 @@ propagate the inverting (pin B) path
  - Combinational feedback loops
  - Non-unate cells along clock paths
 
+- Objective - To understand how to add additional constraints apply user specified annotated delays to explore time borrowing with latches
+
+## Task 1: Debug PTE-070 Information Messages
+- Invoke the PrimeTime additional Unix directory
+```
+pt shell - RUN.tcl | tee -i run.log
+```
+
+- Shown below is the full message regarding a non-unate path on the clock network. In the next step, you will be asked to generate a timing report through this pin. In order to copy and paste and avoid typos-either find this message in the log file from another terminal window or use the Uni command grep from within PrimeTime as shown
+```
+From ./run. log
+Information: A non-unate path in clock
+network detected.
+Propagating both inverting and noninverting
+senses of clock 'SDRAM CLK' from pin
+'I_ORCA_TOP/I_SDRAM_IF/sd mux dq_out_0/z'
+(PTB-070)
+```
 
 ```
-pt_shell> quit
+pt_shell> sh grep -A1 -B 1 PTE-070 run.log
 ```
+
+- Note: The command sh (or alternatively exec) allows you to execute Unix commands from within the PrimeTime shell
+- Generate a timing report for setup through the above pin
+```
+pt_shell> report_timing -input -through <through pin>
+```
+
+- Generate at least one additional timing report to show the use of a negative unate timing arc through the pin of interest
+
+
