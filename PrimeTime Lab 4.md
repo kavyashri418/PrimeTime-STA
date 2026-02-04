@@ -204,3 +204,101 @@ timing_remove_clock_reconvergence_pessimism = "true"
 - What type and where are the clocks defined
 - Which clocks are interacting
 - What is Clock Reconvergence Pessimism Removal (CRPR)
+
+## Task 1: Use the GUI to Report Clock Relationships
+- Start the GUI by executing the following commands
+```
+pt_shell> start_gui
+```
+
+- Note: The original pt_shell session is still running in the terminal window. We can keep the GUI open and use either the shell or the GUI interface as appropriate to the desired tasks.
+- Look at clock domain crossings: Open the "clock domain matrix" from the pull down menu: Clock ---> Clock Analyzer
+- The Clock Analyzer window that opens (expand if needed by clicking on the plus signs to the left of the clocks) should match the information from check timing when reporting the clock crossings in the design. Mouse over the blocks in the matrix to see information on what type of false paths exist. It is sometimes easier to digest this information as a graphical matrix table in comparison to the text output form.
+
+```
+pt_shell> check_timing -override clock_crossing -verbose
+```
+
+- The left part of the window lists each master clock and any generated clocks that are created from each master clock
+- Explore in more detail by displacing the clock schematic for SYS_2x_CLK: select the clock, then right mouse button + schematic of selected clocks. Expand the fan-in for the schematic for the MUX called I_CLOCK_GEN/U20 by double - clicking the input stubs, as shown in the following screen captures
+- Continue the double clicks until the fain is exhausted [Example: an input port has been reached]
+- Explore clock relationships with the abstract clock graph: Close the schematic window, then, on the Top level window, select Clock--> Clock Graph for all clocks. If necessary, display a toolbar next to the schematic by pressing the F8 key. Display various elements by checking the toolbar and pressing Apply
+- Find a pair of muxed clocks: In the Abstract Clock Graph Toolbar, select Mux and click Apply
+- In the Abstract Clock Graph, find instance I_CLOCK_GEN/U10 of mx02d1. Hint: To locate/highlight U10, use Select --> By Name
+- In from the clock graph window, 'zoom into' an interesting object by displaying a schematic for it: Select I_CLOCK_GEN/U10, then Schematic --> Schematic
+- Go back to the Abstract Clock Graph
+- Close the Clock Analyzer window by clicking on the small "X" in its upper right corner
+- Close the Clock Schematic and Clock Analyzer windows by clicking on the small "X" in the upper right corner
+
+## Task 2: Use the GUI to explore detail of timing paths
+- Investigate paths between launch and capture clocks-in this case. We will look at network latency for the launch and capture paths clocked by SYS_CLK
+- Propagate all the clocks to have the clock network delays calculated by PrimeTime before examining paths, by executing these commands in the shell, which remains open behind the GUI (this will take a minute or so to complete) Tell PrimeTime to save the arrival times for all pins (this is what you will examine) Then, define a collection of timing paths to examine
+```
+pt_shell> set_propagated_clock [all_clocks]
+pt_shell> set timing_save_pin_arrival_and_slack true
+pt_shell> update_timing
+pt_shell> set my_paths [get_timing_paths -max 10 -group SYS_CLK -path full_clock_expanded]
+```
+
+- Enter your collection of violating paths from the pull-down menu Timing --> Path Analyzer
+- Bring up a histogram of your ten timing paths
+- From the histogram, bring up the path inspector on a selected path
+- In the path inspector, examine clock reconvergence pessimism: In the data required and data arrival section, scroll down until you find CRP. Then scroll across until you find the precent of delay for the CRP
+- Look at the schematic of the path bny clicking on the path schematic tab on the bottom of the path inspector window
+- In this schematic window, find the CRP (Clock reconvergence pessimism) point. This is the last pin before the launch and capture paths diverge
+- Note: Mouse "gestures" or "strokes" are available for easier zooming. While pressing the middle mouse button drag the cursor vertically for "zoom full" Drag diagonally up across an object to zoom in, and down across an object to zoom out
+- To see arrival times on this pin, if necessary, you may have to first 'expand the pin's buffer (PrimeTime may 'collapse' buffer trees into a single buffer)
+- View the arrival times (and any other attributes of interest) by selecting the output pin of the buffer just before the register, then by selecting View --> Property [and by changing the list from being the default "Basic" to the "Application"]
+- Examine the path waveform: Click on the waveform tab at the bottom of the Path Inspector Window
+- Close the GUI while keeping the original pt_shell session going in the terminal window
+```
+pt_shell> stop_gui (In the pt_shell window)
+or
+File -> Close GUI (In the main GUI window)
+```
+
+## Task 3: Report a False Violation
+- Bring up PrimeTime and restore the saved session orca_savesession_violations
+- Determine the number and type of timing violations in ORCA
+```
+pt_shell> report_analysis_coverage
+```
+
+- Generate a "short" timing report for the worst slack for an out_setup timing checks
+- Look at the data required time section of the timing report from the last step and notice that no clock latency is reported. Confirm this with the following command
+```
+This report will return nothing as PrimeTime has not calculated source latency for SD_DDR_CLK
+pt_shell> report_clock -skew SD_DDR_CLK
+```
+
+- There is a variable that can be used to make all clocks propagated. Use the Tcl procedure a help you identify the appropriate variable
+```
+aa propagate
+```
+
+- Use the man page for check_timing to find the name of the additional check that will flag all ideal clocks. The following commands opens the man page in a pop-up window with a scroll bar that simplifiers viewing long reports:
+```
+pt_shell> vman check_timing
+```
+
+- Quit PrimeTime
+
+## Task 4: Re-Execute the Run Script to Reduce Violations
+- We are provided with the file./scripts/orca_pt_variables.tcl that will accomplish the following two things
+  - Adds to the default checks performed by check timing the check that will flag ideal clocks
+  - All created clocks will be created as propagated clocks
+- Execute the run script./RUN.tcl from the previous lab clocks Unix directory. Log the results to the log file run.log
+```
+pt shell - RUN.tcl | tee -i run.log
+```
+
+- Invoke the PrimeTime and restore the newly saved session in the unix directory orca_savesession
+- Use the appropriate commands to confirm the information below:
+  - The out_setup violations have been reduced
+  - All clocks are propagated
+  - Execute check_timing to confirm it is performing its default checks in addition to the check for ideal clocks
+  - The source latency is now calculated for SD_DDR_CLK
+  - The timing report to sd_DQ[3] includes this calculated source latency
+  - There will be additional violations (more setup violations as well as out_hold violations) that you can ignore
+
+- Quit PrimeTime
