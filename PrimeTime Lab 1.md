@@ -15,7 +15,7 @@ RUN.tcl - run script for orca_savesession
 
 ## Task 1: Restore a PrimeTime Session
 
-- Invoke PrimeTime from the lab1 directory.  
+- Invoke PrimeTime from the lab1 directory  
 ```
 pt shell
 ```
