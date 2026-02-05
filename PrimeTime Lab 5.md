@@ -198,4 +198,47 @@ pt_shell> report_timing -input -through <through pin>
 
 - Generate at least one additional timing report to show the use of a negative unate timing arc through the pin of interest
 
+## Task 2: Debug PTE-070 Information Messages
+- There is only one latch in this design. Use the following commands to find it. Take advantage of command and option completion with the tab key
+```
+pt shell> all_registers -level_eensitive
+pt_shell> !! -clock_pin
+pt_shell> all_registers -level_eensitive -data_pins
+```
 
+- Generate a timing report starting at the latch for setup time (be specific by using the clock pin as the start point and not just the cell name!). This lab will refer to this timing report as "path segment#2". The function oft his latch in the ORCA design is to generate a clock signal to turn on and off the clock SYS_CLK
+- Generate a timing report for the previous stage (this lab will refer to this timing report as "path segment#1*) Use the D input pin of the latch as the end point of this timing path
+- Force path segment#1 to borrow time from path segment#2 by annotating a net delay of 4ns as shown below:
+```
+Use cut and paste to avoid typos on the pin name
+pt_shell> set_annotated_delay -net 4 \
+         -to _ORCA_TOP/I_BLENDER/latched_clk_en_reg/D
+```
+
+- Generate the timing report for path segment#1 again(take advantage of the up and down arrows to scroll through the history event list)
+- Re-generate the timing report for path segement#2
+Note: The start point of the timing path will now be the D pin of the latch(not the clock pin as used before because you are interested in reporting the timing path that includes time borrow)
+```
+pt_shell> report_timing -from \
+    I_ORCA_TOP/I_BLENDER/latched_clk_en_reg/D
+```
+
+- Change the latch behaviour for transparency, that is make it transparent when data arrives between the opening and closing edges of the clock
+```
+pt_shell> set_app_var timing_enable_through_paths true
+```
+
+- Repeat your timing report to the latch D pin. Notice that, even though the latch is transparent, you can still specify the D pin as an endpoint
+```
+pt_shell> report_timing -to \
+     I_ORCA_TOP/I_BLENDER/latched_clk_en_reg/D
+```
+
+- Do a timing report FROM the start point you just identified
+```
+pt_shell> report_timing -from \
+    I_ORCA_TOP/I_PARSER/blender_clk_en_reg/CP
+```
+
+- Quit PrimeTime
+  
