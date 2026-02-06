@@ -1,5 +1,7 @@
 ## Additional Checks and Constraints
 
+## Objective - To understand how to add additional constraints apply user specified annotated delays to explore time borrowing with latches
+
 ## Asynchronous Clear/Reset Pins
 <img width="478" height="341" alt="Screenshot 2026-01-31 015740" src="https://github.com/user-attachments/assets/cdb9e2f5-ee1d-4df7-8141-06b48988be33" />
 
@@ -155,20 +157,6 @@ propagate the inverting (pin B) path
 ```
 <img width="534" height="159" alt="Screenshot 2026-01-31 020334" src="https://github.com/user-attachments/assets/a2e05ae8-ff49-4bb2-aa34-12fff6173bb1" />
 
-## Summary
-- Exercise the timing checks during STA
- - Recovery, Removal
- - Clock-gating checks
- - Data-to-Data checks
- - Minimum pulse width checks
-- Analyze timing that involves
- - Latches with time borrowing
- - Multicycle paths
- - Combinational feedback loops
- - Non-unate cells along clock paths
-
-- Objective - To understand how to add additional constraints apply user specified annotated delays to explore time borrowing with latches
-
 ## Task 1: Debug PTE-070 Information Messages
 - Invoke the PrimeTime additional Unix directory
 ```
@@ -241,4 +229,16 @@ pt_shell> report_timing -from \
 ```
 
 - Quit PrimeTime
+
+## Summary
+- Exercise the timing checks during STA
+ - Recovery, Removal
+ - Clock-gating checks
+ - Data-to-Data checks
+ - Minimum pulse width checks
+- Analyze timing that involves
+ - Latches with time borrowing
+ - Multicycle paths
+ - Combinational feedback loops
+ - Non-unate cells along clock paths
   
