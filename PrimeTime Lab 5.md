@@ -1,6 +1,6 @@
 ## Additional Checks and Constraints
 
-## Objective - To understand how to add additional constraints apply user specified annotated delays to explore time borrowing with latches
+_Objective - To understand how to add additional constraints apply user specified annotated delays to explore time borrowing with latches_
 
 ## Asynchronous Clear/Reset Pins
 <img width="478" height="341" alt="Screenshot 2026-01-31 015740" src="https://github.com/user-attachments/assets/cdb9e2f5-ee1d-4df7-8141-06b48988be33" />
