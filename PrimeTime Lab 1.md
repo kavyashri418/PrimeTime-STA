@@ -130,16 +130,6 @@ pt_shell> report_case_analysis
 pt_shell> quit
 ```
 
-## Summary
-- List the steps of Timing Analysis flow in PrimeTime
-- Generate summary reports using
-  - Report_analysis_coverage
-  - Report_global_timing
-  - Report_timing
-- State the purposes of setup files and run a script
-- Enable monitoring runtime and memory used
-
-
 ## Task 4: Execute the run script and analyze the run
 
 - Execute the run script logging the results to the log file run. log.
@@ -178,5 +168,15 @@ pt_shell> !rep -delay min
 ```
 pt_shell> quit
 ```
+
+## Summary
+- List the steps of Timing Analysis flow in PrimeTime
+- Generate summary reports using
+  - Report_analysis_coverage
+  - Report_global_timing
+  - Report_timing
+- State the purposes of setup files and run a script
+- Enable monitoring runtime and memory used
+
 
 
