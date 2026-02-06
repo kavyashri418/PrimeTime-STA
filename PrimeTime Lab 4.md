@@ -1,6 +1,6 @@
 ## Constraining Multiple Clocks
 
-## To understand how to generate timing reports and how to understand how to analyze them
+_Objective: To understand how to PrimeTime commands to gather information about the design clocks and use the GUI for another view of the design clocks_
 
 ## Clocks and STA: Three Types of Clocks
 STA is dictated largely by the design clocks. Faster, easier debugging of timing violations with familiarity of the design clocks
