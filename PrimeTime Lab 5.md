@@ -157,6 +157,15 @@ propagate the inverting (pin B) path
 ```
 <img width="534" height="159" alt="Screenshot 2026-01-31 020334" src="https://github.com/user-attachments/assets/a2e05ae8-ff49-4bb2-aa34-12fff6173bb1" />
 
+
+## Relevant Directory
+```
+.synopsys_pt.setup - automatically read PT setup file
+orca_savesession - saved session directory
+logs/ - log files from run script
+RUN.tcl - run script for ORCA
+```
+
 ## Task 1: Debug PTE-070 Information Messages
 - Invoke the PrimeTime additional Unix directory
 ```
