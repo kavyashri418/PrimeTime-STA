@@ -1,5 +1,7 @@
 ## Writing constraints and validating them
 
+## Objective: To understand how to validate the constraints and how to interpret constraints in a timing report
+
 ## Requirement for Complete STA
 - For complete static timing analysis, you must:
   - Completely constrain the design
@@ -229,8 +231,6 @@ set_output_delay -min
 set_output_delay -max 2.5 -clock Clk [all_outputs]
 set_output_delay -min -0.2 -clock Clk [all_outputs]
 ```
-
-Objective: To understand how to validate the constraints and how to interpret constraints in a timing report.
 
 ### Relevant Files & Directories
 ```
