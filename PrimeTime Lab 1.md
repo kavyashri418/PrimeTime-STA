@@ -1,6 +1,6 @@
 ## PrimeTime Flow
 
-## Objective - To be familiar with Prime Time and understand how to read and analyze setup/hold reports
+_Objective - To be familiar with Prime Time and understand how to read and analyze setup/hold reports_
 
 ### Relevant Files & Directories
 ```
