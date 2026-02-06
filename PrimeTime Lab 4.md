@@ -1,5 +1,7 @@
 ## Constraining Multiple Clocks
 
+## To understand how to generate timing reports and how to understand how to analyze them
+
 ## Clocks and STA: Three Types of Clocks
 STA is dictated largely by the design clocks. Faster, easier debugging of timing violations with familiarity of the design clocks
 - Three types of Clocks:
@@ -198,12 +200,12 @@ timing_remove_clock_reconvergence_pessimism = "true"
 ## Finding CRP in a Timing Report
 <img width="620" height="384" alt="Screenshot 2026-01-31 021949" src="https://github.com/user-attachments/assets/75c9cb44-1446-4aed-aa60-fea45e73d14b" />
 
-## Summary
-- Gather basic information about the design clocks on a unfamiliar designs
-- How many clocks
-- What type and where are the clocks defined
-- Which clocks are interacting
-- What is Clock Reconvergence Pessimism Removal (CRPR)
+## Relevant Directory
+```
+.synopsys_pt.setup - automatically read PT setup file
+orca_savesession - saved session directory
+RUN.tcl - run script for orca_savesession
+```
 
 ## Task 1: Use the GUI to Report Clock Relationships
 - Start the GUI by executing the following commands
@@ -302,3 +304,11 @@ pt shell - RUN.tcl | tee -i run.log
   - There will be additional violations (more setup violations as well as out_hold violations) that you can ignore
 
 - Quit PrimeTime
+
+## Summary
+- Gather basic information about the design clocks on a unfamiliar designs
+- How many clocks
+- What type and where are the clocks defined
+- Which clocks are interacting
+- What is Clock Reconvergence Pessimism Removal (CRPR)
+
