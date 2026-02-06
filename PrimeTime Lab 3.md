@@ -1,5 +1,7 @@
 ## Generate Timing Reports and Analysing them
 
+## Objective - To understand how to generate timing reports and understand how to analyze them.
+
 ## Timing Analysis Flow in PrimeTime Generating Reports
 - STA flow is divided into several steps as seen below
 - Steps 1-3 data
@@ -250,8 +252,6 @@ pt_shell> report_timing -input_pins
 
 ## Net Delay Calculation Report
 <img width="658" height="300" alt="Screenshot 2026-01-31 024010" src="https://github.com/user-attachments/assets/382648f0-f7a2-4dd0-8014-fbffcf14e96b" />
-
-Objective - To understand how to generate timing reports and understand how to analyze them.
 
 ## Relevant Directory
 ```
