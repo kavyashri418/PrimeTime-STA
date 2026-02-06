@@ -1,6 +1,6 @@
 ## Generate Timing Reports and Analysing them
 
-## Objective - To understand how to generate timing reports and understand how to analyze them.
+_Objective - To understand how to generate timing reports and understand how to analyze them_
 
 ## Timing Analysis Flow in PrimeTime Generating Reports
 - STA flow is divided into several steps as seen below
