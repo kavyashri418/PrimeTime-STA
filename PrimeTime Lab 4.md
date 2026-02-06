@@ -204,7 +204,9 @@ timing_remove_clock_reconvergence_pessimism = "true"
 ```
 .synopsys_pt.setup - automatically read PT setup file
 orca_savesession - saved session directory
-RUN.tcl - run script for orca_savesession
+orca_savesession_violations - saved ORCA session with an issue
+RUN.tcl - run script for ORCA
+scripts/orca_pt_variables.tcl - run script for ORCA
 ```
 
 ## Task 1: Use the GUI to Report Clock Relationships
