@@ -1,6 +1,6 @@
 ## Writing constraints and validating them
 
-## Objective: To understand how to validate the constraints and how to interpret constraints in a timing report
+_Objective: To understand how to validate the constraints and how to interpret constraints in a timing report_
 
 ## Requirement for Complete STA
 - For complete static timing analysis, you must:
